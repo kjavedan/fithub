@@ -27,8 +27,8 @@ export default async function Post({ params }: Params) {
     await getPostData(postId);
 
   return (
-    <main className="py-6">
-      <p className="text-6xl mt-6">{icon}</p>
+    <main className="pb-6 pt-3">
+      <p className="text-6xl">{icon}</p>
       <h1 className="text-4xl mt-2  mb-0">{title}</h1>
       <p className="mt-0 text-xs">{` زمان خواندن: ${readingTime} .  تاریخ: ${date} `}</p>
       <p className="mt-0 text-xs">{`  نویسنده: ${author} `}</p>

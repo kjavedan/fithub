@@ -65,7 +65,7 @@ export default function Activity() {
       )}
       <div
         ref={ref}
-        className="relative scroll-smooth  pb-4  flex overflow-x-scroll  h-fit mt-2  pl-16"
+        className="relative pr-6 -mr-6 md:mr-0 md:pr-0 scroll-smooth  pb-4  flex overflow-x-scroll  h-fit mt-2  pl-16"
       >
         <ActivityCard />
         <ActivityCard />
