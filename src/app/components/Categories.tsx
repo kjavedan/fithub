@@ -46,7 +46,7 @@ const Categories = () => {
           } border-t border-gray-200 dark:border-neutral-700 transition-height ease-in-out duration-300 overflow-hidden`}
         >
           {item.children.map((item, index) => (
-            <Link href={item.path} key={index}>
+            <Link href={item.path} key={item.title}>
               <button
                 key={index}
                 className="flex w-full border-b border-gray-200 dark:border-neutral-700  items-center justify-normal  px-2 "
