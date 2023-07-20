@@ -21,11 +21,12 @@ export default function RootLayout({
     <html lang="fa">
       <GoogleAnalytics GA_MEASUREMENT_ID="G-6VF8BJ01X5" />
       <body
-        className={`${vazirmatn.className} relative z-40    bg-neutral-100 dark:bg-neutral-900 min-h-screen max-w-screen-md mx-auto px-6`}
+        className={`${vazirmatn.className} transition duration-100  bg-neutral-100 dark:bg-neutral-900 min-h-screen max-w-screen-md mx-auto `}
       >
         <Header />
-
-        {children}
+        <main className={` overflow-x-hidden relative z-30 px-6`}>
+          {children}
+        </main>
         <CookieBanner />
       </body>
     </html>

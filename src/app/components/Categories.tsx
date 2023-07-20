@@ -24,7 +24,7 @@ const Categories = () => {
       >
         <button
           onClick={() => handleClick(index)}
-          className="flex items-center  p-2 w-full"
+          className="flex items-center  p-2 w-full hover:bg-neutral-300 dark:hover:bg-neutral-800"
         >
           <div className="flex  items-center justify-center w-10 h-10">
             <span className="text-2xl">{item.icon}</span>
@@ -41,15 +41,18 @@ const Categories = () => {
           </div>
         </button>
         <div
-          className={` ${
-            openItems[index] ? "h-auto" : "h-0 "
-          } border-t border-gray-200 dark:border-neutral-700 transition-height ease-in-out duration-300 overflow-hidden`}
+          style={{
+            height: openItems[index] ? item.children.length * 40 + "px" : "0",
+          }}
+          className={
+            "border-t border-gray-200 dark:border-neutral-700 transition-height ease-in-out duration-300 overflow-hidden"
+          }
         >
           {item.children.map((item, index) => (
             <Link href={item.path} key={item.title}>
               <button
                 key={index}
-                className="flex w-full border-b border-gray-200 dark:border-neutral-700  items-center justify-normal  px-2 "
+                className="flex w-full border-b border-gray-200  dark:border-neutral-700  hover:bg-neutral-300 dark:hover:bg-neutral-800   items-center justify-normal  px-2 "
               >
                 <div className="flex items-center justify-center w-10 h-10">
                   <span className="text-2xl">{item.icon}</span>

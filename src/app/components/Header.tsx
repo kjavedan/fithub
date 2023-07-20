@@ -69,7 +69,7 @@ function Header() {
     >
       <div
         style={{ direction: "ltr" }}
-        className="flex flex-wrap  items-center justify-between "
+        className="flex flex-wrap px-6  items-center justify-between "
       >
         <div className="  cursor-pointer">
           {pathname !== "/" ? (
