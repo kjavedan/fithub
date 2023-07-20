@@ -63,7 +63,7 @@ const Categories = () => {
         </div>
       </div>
     ) : (
-      <Link href={item.title}>
+      <Link key={item.title} href={item.title}>
         <button className="flex items-center p-2 border-t  border-gray-200 dark:border-neutral-700">
           <div className="flex items-center justify-center w-10 h-10 ">
             {/* Use Tailwind CSS text utilities for font-size */}
