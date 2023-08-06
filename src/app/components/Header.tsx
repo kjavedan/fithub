@@ -59,13 +59,43 @@ function Header() {
       localStorage.setItem("theme", "light");
       setIsDark(false);
     }
+    if (!localStorage.getItem("activity")) {
+      const myArray: string[] = [];
+      localStorage.setItem("activity", JSON.stringify(myArray));
+    }
   }, []);
+
+  useEffect(() => {
+    // Get the existing array from local storage
+    const existingArrJSON = localStorage.getItem("activity");
+    const existingArr = existingArrJSON ? JSON.parse(existingArrJSON) : [];
+
+    // Initialize a new array with a default element
+    let newArr: string[] = [];
+    if (pathname !== "/") {
+      // Check if the existing array contains the current pathname
+      if (existingArr && existingArr.includes(pathname)) {
+        // Reorder the array to bring the pathname to the beginning
+        newArr = [
+          pathname,
+          ...existingArr.filter((item: string) => item !== pathname),
+        ];
+      } else {
+        // Add the pathname to the beginning of the array
+        newArr = [pathname, ...existingArr];
+      }
+      localStorage.setItem("activity", JSON.stringify(newArr));
+    }
+    console.log(newArr);
+
+    // Set the new array to local storage
+
+    console.log(localStorage.getItem("activity"));
+  }, [pathname]);
 
   return (
     <nav
-      className={`z-50 py-4 sticky top-0 bg-inherit ${
-        isVisible ? "" : "header-hidden"
-      }`}
+      className={`z-50 py-4 sticky top-0  ${isVisible ? "" : "header-hidden"}`}
     >
       <div
         style={{ direction: "ltr" }}
