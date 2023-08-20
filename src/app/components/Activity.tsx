@@ -7,6 +7,7 @@ export default function Activity() {
   // STATE
   const [showLeftButton, setShowLeftButton] = useState(true);
   const [showRightButton, setShowRightButton] = useState(false); // Assuming the right button is initially shown
+  const [activityData, setActivityData] = useState([]);
 
   // REF
   const ref = useRef(null);
@@ -23,6 +24,16 @@ export default function Activity() {
     setShowRightButton(element.scrollLeft !== 0);
   };
 
+  const handleScrollClick = (direction: string) => {
+    const element: any = ref.current;
+    if (direction === "left") {
+      element.scrollLeft -= 600;
+    } else {
+      element.scrollLeft += 600;
+    }
+  };
+
+  // USEEFFECT
   useEffect(() => {
     // Attach scroll event listener when the component mounts
     const element: any = ref.current;
@@ -34,14 +45,15 @@ export default function Activity() {
     };
   }, []);
 
-  const handleScrollClick = (direction: string) => {
-    const element: any = ref.current;
-    if (direction === "left") {
-      element.scrollLeft -= 600;
-    } else {
-      element.scrollLeft += 600;
-    }
-  };
+  useEffect(() => {
+    const data = localStorage.getItem("activity");
+    setActivityData(data ? JSON.parse(data) : []);
+  }, [localStorage.getItem("activity")]);
+
+  //JSX
+  const activityElements = activityData.map((activity: string) => (
+    <ActivityCard key={activity} path={activity} />
+  ));
 
   return (
     <div className="mt-6  relative w-screen  h-fit md:w-full">
@@ -67,14 +79,7 @@ export default function Activity() {
         ref={ref}
         className="relative pr-6 -mr-6 md:mr-0 md:pr-0 scroll-smooth  pb-4  flex overflow-x-scroll  h-fit mt-2  pl-16"
       >
-        <ActivityCard />
-        <ActivityCard />
-        <ActivityCard />
-        <ActivityCard />
-        <ActivityCard />
-        <ActivityCard />
-        <ActivityCard />
-        <ActivityCard />
+        {activityElements}
       </div>
     </div>
   );

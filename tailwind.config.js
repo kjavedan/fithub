@@ -17,6 +17,10 @@ module.exports = {
         100: "100px",
         200: "200px",
       },
+      maxWidth: {
+        100: "100px",
+        200: "200px",
+      },
       transitionProperty: {
         height: "height",
       },
