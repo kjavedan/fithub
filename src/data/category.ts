@@ -35,6 +35,12 @@ export const itemsData = [
         icon: "✖️",
         path: "/tools/bmr-calculator",
       },
+      {
+        id: "7",
+        title: "workout plan generator",
+        icon: "🏋️",
+        path: "/tools/workout-plan-generator",
+      },
     ],
   },
 ];

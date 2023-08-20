@@ -1,19 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { ArrowDown2, ArrowLeft2 } from "iconsax-react";
 import { itemsData } from "@/data/category";
-import { useRouter } from "next/navigation";
-import handleLinkClick from "@/lib/handleLinkClick";
+import Link from "next/link";
 
 const Categories = () => {
-  // NAVIGATION
-  const router = useRouter();
-
   // STATES
   const [openItems, setOpenItems] = useState([false]);
 
   // FUNCS
-  const handleAccordionToggle = (index: number) => {
+  const handleClick = (index: number) => {
     const newOpenItems = [...openItems];
     newOpenItems[index] = !newOpenItems[index];
     setOpenItems(newOpenItems);
@@ -27,7 +23,7 @@ const Categories = () => {
         className=" border-t border-gray-200 dark:border-neutral-700 w-full"
       >
         <button
-          onClick={() => handleAccordionToggle(index)}
+          onClick={() => handleClick(index)}
           className="flex items-center  p-2 w-full hover:bg-neutral-300 dark:hover:bg-neutral-800"
         >
           <div className="flex  items-center justify-center w-10 h-10">
@@ -53,36 +49,35 @@ const Categories = () => {
           }
         >
           {item.children.map((item, index) => (
-            <button
-              key={index}
-              onClick={() => handleLinkClick(item.path, item.id, router)}
-              className="flex w-full border-b border-gray-200  dark:border-neutral-700  hover:bg-neutral-300 dark:hover:bg-neutral-800   items-center justify-normal  px-2 "
-            >
-              <div className="flex items-center justify-center w-10 h-10">
-                <span className="text-2xl">{item.icon}</span>
-              </div>
-              <div className="flex">
-                <span className="text-sm">{item.path}</span>
-              </div>
-            </button>
+            <Link href={item.path} key={item.title}>
+              <button
+                key={index}
+                className="flex w-full border-b border-gray-200  dark:border-neutral-700  hover:bg-neutral-300 dark:hover:bg-neutral-800   items-center justify-normal  px-2 "
+              >
+                <div className="flex items-center justify-center w-10 h-10">
+                  <span className="text-2xl">{item.icon}</span>
+                </div>
+                <div className="flex">
+                  <span className="text-sm">{item.title}</span>
+                </div>
+              </button>
+            </Link>
           ))}
         </div>
       </div>
     ) : (
-      <button
-        key={item.title}
-        onClick={() => handleLinkClick(item.title, item.id, router)}
-        className="flex items-center p-2 border-t  border-gray-200 dark:border-neutral-700"
-      >
-        <div className="flex items-center justify-center w-10 h-10 ">
-          {/* Use Tailwind CSS text utilities for font-size */}
-          <span className="text-2xl">{item.icon}</span>
-        </div>
-        <div className="flex-grow">
-          {/* Use Tailwind CSS text utilities for font-size */}
-          <span className="text-sm">{item.title}</span>
-        </div>
-      </button>
+      <Link key={item.title} href={item.title}>
+        <button className="flex items-center p-2 border-t  border-gray-200 dark:border-neutral-700">
+          <div className="flex items-center justify-center w-10 h-10 ">
+            {/* Use Tailwind CSS text utilities for font-size */}
+            <span className="text-2xl">{item.icon}</span>
+          </div>
+          <div className="flex-grow">
+            {/* Use Tailwind CSS text utilities for font-size */}
+            <span className="text-sm">{item.title}</span>
+          </div>
+        </button>
+      </Link>
     )
   );
 
